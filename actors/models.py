@@ -5,7 +5,7 @@ from django.db import models
 
 class Actor (models.Model):
     name = models.CharField(max_length=255)
-    image_URL = models.URLField(max_length=255)
+    image = models.URLField(max_length=255)
 
 
 class Genre(models.Model):
@@ -13,16 +13,16 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    title = models.CharField(max_length=255)
     code=models.IntegerField()
-    score = models.FloatField()
+    title = models.CharField(max_length=255)
+    sales = models.IntegerField()
     audience = models.IntegerField()
+    open_date=models.DateField()
+    actors = models.ManyToManyField(Actor, related_name="movies")
+    genres = models.ManyToManyField(Genre, related_name="movies")
+    score = models.FloatField()
     summary = models.TextField()
     poster_URL = models.URLField(max_length=255)
-    actors = models.ManyToManyField(Actor, related_name="movie")
-    genres = models.ManyToManyField(Genre, related_name="movie")
-    sales = models.IntegerField()
-    open_date=models.DateField()
 
 
 # class Youtube(models.Model):
@@ -35,4 +35,4 @@ class Rating(models.Model):
     comment = models.TextField()
     score = models.FloatField()
     actor = models.ForeignKey(
-        Actor, on_delete=models.CASCADE, related_name="rating")
+        Actor, on_delete=models.CASCADE, related_name="ratings")

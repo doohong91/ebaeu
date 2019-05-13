@@ -2,7 +2,7 @@
 
 ## i. 팀원 정보 및 업무 분담 내역
 
-- 김종민
+- 김종민([gitlab](<https://lab.ssafy.com/HorangApple/>))
 
 - 민두홍([gitlab](<https://lab.ssafy.com/doohong91/>))
 

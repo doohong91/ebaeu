@@ -68,8 +68,9 @@ def rating_detail(request,rating_id):
   elif request.method == 'PUT':
     serializer=RatingSerializer(rating, data=request.data)
     if serializer.is_valid():
-      return Response({"message": "작성되었습니다."})
+      serializer.save()
+      return Response({"message": "수정되었습니다."})
     return Response({"message": "HTTP_400_BAD_REQUEST"},status=status.HTTP_400_BAD_REQUEST)
   elif request.method == 'DELETE':
     rating.delete()
-    return Response({"message": "작성되었습니다."})
+    return Response({"message": "삭제되었습니다."})
