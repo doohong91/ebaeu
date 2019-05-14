@@ -10,8 +10,8 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
-    description = models.TextField(blank=True) 
-    nickname = models.CharField(max_length=30, blank=True)
+    description = models.TextField(default='자기소개') 
+    nickname = models.CharField(max_length=30, default='닉네임')
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
     def __str__(self):

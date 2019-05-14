@@ -15,7 +15,7 @@ def signup(request):
             user = form.save()
             Profile.objects.create(user=user)
             auth_login(request, user)
-            return redirect('profile', request.username)
+            return redirect('profile', request.user.username)
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/form.html', {'form': form, 'name': 'SignUp'})
@@ -26,7 +26,7 @@ def login(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-        return redirect('profile', request.username)
+        return redirect('profile', request.user.username)
     else:
         form = AuthenticationForm()
         return render(request, 'accounts/form.html', {'form': form, 'name': 'Login'})
