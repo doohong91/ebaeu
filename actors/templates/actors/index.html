@@ -4,40 +4,36 @@
 {% block title %}
 main
 {% endblock title %}
-  
+
 {% block body2 %}
 <h2 class="mr-3 my-3">- 명예의 전당</h2>
 <!-- 배우 순위 시작-->
 {% for actor in actors %}
 <div class="card mb-1">
   <a class="noLink" href="{% url 'actors:detail' actor.id %}">
-  <div class="row no-gutters ">
-    <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
-      <div class="col-4 pr-2">
-        <p class="text-center">1</p>
+    <div class="row no-gutters ">
+      <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
+        <div class="col-4 pr-2">
+          <p class="text-center">1</p>
+        </div>
+        <div class="col-8">
+          <img src="{{ actor.image }}" class="card-img" alt="profile" style="width: auto; height: 125px;">
+        </div>
       </div>
       <div class="col-8">
-        <img src="{{ actor.image }}" 
-        class="card-img" 
-        alt="profile"
-        style="width: auto; height: 125px;"
-        >
+        <div class="card-body">
+          <h5 class="card-title">{{ actor.name }}</h5>
+          <p class="card-text">
+            <div class="stars-container" style="word-wrap:normal; font-size: 30px; width: 5em">
+              <span class="stars-before">★★★★★</span>
+              <span class="stars-after" style="width:50%">★★★★★</span>
+            </div>
+          </p>
+        </div>
       </div>
     </div>
-    <div class="col-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ actor.name }}</h5>
-        <p class="card-text">
-          <div style="word-wrap:normal;font-size: 30px;">
-            <span class="stars-before">★★★★★</span>
-            <span class="stars-after" style="width:50%">★★★★★</span> 5.0</div>
-        </p>
-      </div>
-    </div>
-  </div>
-</a>
+  </a>
 </div>
 {% endfor %}
 <!-- 배우 순위 카드 끝 -->
 {% endblock body2 %}
-  

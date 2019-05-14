@@ -32,14 +32,12 @@
 
 .stars-container {
   position: relative;
-  display: inline-block;
+  display: block;
   color: transparent;
 }
 
 .stars-before {
   position: absolute;
-  top: 0;
-  left: 0;
   content: '★★★★★';
   color: lightgray;
 }
@@ -47,9 +45,6 @@
 .stars-after {
   overflow: hidden;
   position: absolute;
-  top: 0;
-  left: 0;
   content: '★★★★★';
   color: gold;
-  
 }
