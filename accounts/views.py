@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -15,7 +15,7 @@ def signup(request):
             user = form.save()
             Profile.objects.create(user=user)
             auth_login(request, user)
-            return redirect('posts:list')
+            return redirect('profile', request.username)
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/form.html', {'form': form, 'name': 'SignUp'})
@@ -26,7 +26,7 @@ def login(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-        return redirect('posts:list')
+        return redirect('profile', request.username)
     else:
         form = AuthenticationForm()
         return render(request, 'accounts/form.html', {'form': form, 'name': 'Login'})
@@ -34,15 +34,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('posts:list')
-
-
-def delete(request):
-    if request.method == "POST":
-        request.user.delete()
-        return redirect('posts:list')
-    else :
-        return render(request, 'accounts/delete.html')
+    return redirect('api/v1/docs')
 
 
 @login_required        
@@ -52,7 +44,6 @@ def follow(request, user_id):
         person.followers.remove(request.user)
     else :
         person.followers.add(request.user)
-        
     return redirect('profile', person.username)
 
 
@@ -70,4 +61,4 @@ def change_profile(request):
             return redirect('profile', request.user.username)
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-        return render(request, 'accounts/change_profile.html', {'profile_form':profile_form})
+        return render(request, 'accounts/form.html', {'form':profile_form, 'name': 'My Profile'})

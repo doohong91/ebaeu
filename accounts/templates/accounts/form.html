@@ -3,17 +3,17 @@
 {% load bootstrap4 %}
 
 {% block title %}
-  {{name}}
+  {{ name }}
 {% endblock %}
 
 {% block body %}
   <div class="col-6 offset-3">
-    <h1 class="my-4">{{name}}</h1>
+    <h1 class="my-4">{{ name }}</h1>
     <form method='POST'>
       {% csrf_token %}
       {% bootstrap_form form %}
       {% buttons %}
-        <button type=submit class='btn btn-primary'>{{name}}</button>
+        <button type=submit class='btn btn-primary'>{{ name }}</button>
       {% endbuttons %}
     </form>
   </div>

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ profile.username }}님의 프로필
+{% endblock %}
+
+{% block body %}
+  <div class="row my-3">
+    <div class="col-3">
+      {% if profile == request.user %}
+        <h2>{{ profile.username }}</h2>
+        <a href="{% url 'accounts:change_profile' %}" class="btn btn-info btn-sm">프로필 수정</a>
+      {% endif %}
+      
+      {% if user != profile %}
+        {% if user in profile.followers.all %}
+          <p>이제 맘 바꼈음...</p>
+          <a class="btn btn-warning" href="{% url 'accounts:follow' profile.id %}">팔로우 취소</a>
+        {% else %}
+          <p>나랑 좀 취향이 비슷한 것 같은데??</p>
+          <a class="btn btn-success" href="{% url 'accounts:follow' profile.id %}">팔로우</a>
+        {% endif %}
+      {% endif %}
+    </div>
+    <div class="col-9">
+      <strong>
+        {{ profile.profile.nickname }}
+      </strong>
+      <div>
+        {{ profile.profile.description }}
+      </div>
+      <hr>
+      <div>
+        <p>팔로워: {{ profile.followers.count }}명</p>
+        <p>팔로우: {{ profile.followings.count }}명</p>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    {% if user == profile %}
+      <h3>내가 좋아하는 배우입니다.</h3>
+    {% else %}
+      <h3>{{ profile.username }}님이 좋아하는 배우입니다.</h3>
+    {% endif %}
+    {% for actor in profile.like_actor.all %}
+    <div class="col-4">
+      <div class="card">
+        <img src="{{ actor.image }}" class="card-img-top" alt="{{ actor.name }}">
+        <div class="card-body">
+          <p class="card-text">{{ actor.name }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row my-3">
+    {% if user == profile %}
+      <h3>내가 본 영화입니다.</h3>
+    {% else %}
+      <h3>{{ profile.username }}님이 본 영화입니다.</h3>
+    {% endif %}
+    {% for movie in profile.viewed_movie.all %}
+    <div class="col-4">
+      <div class="card">
+        <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
+        <div class="card-body">
+          <p class="card-text">{{ movie.title }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
