@@ -15,3 +15,17 @@
 .content{
   font-size: 0.8rem;
 }
+
+.blank {
+  position: relative;
+  height: 180px;
+  text-align: center;
+  background-color: #dcdcdc;
+}
+
+.blank h4 {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
