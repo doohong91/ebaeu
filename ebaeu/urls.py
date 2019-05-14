@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
+from accounts import views as accounts_views
 
 schema_view = get_swagger_view(title='Movie API')
 
@@ -25,4 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('actors.urls')),
     path('accounts/', include('accounts.urls')),
+    path('<str:username>/', accounts_views.profile, name='profile'),
 ]
