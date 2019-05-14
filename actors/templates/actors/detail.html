@@ -1,0 +1,128 @@
+{% extends 'bns.html' %}
+
+
+{% block title %}
+main
+{% endblock title %}
+  
+{% block body2 %}
+<!-- 배우 순위 시작-->
+<div class="card mb-1" >
+  <div class="row no-gutters">
+    <div class="col-4 d-flex justify-content-center align-items-center">
+      <div class="col-4 pr-2">
+        <p class="text-center">1</p>
+      </div>
+      <div class="col-8">
+        <img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F140%2F20141017144111891.jpg" 
+        class="card-img" 
+        alt="profile"
+        style="width: auto; height: 125px;"
+        >
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="card-body">
+        <h5 class="card-title">송강호</h5>
+        <p class="card-text">택시운전사, 밀정, 변호인 등 출연</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <hr style="width:70px;border: 1px solid orange;">
+    <div class="container mt-1" style="padding-left: 20px; padding-right: 20px">
+      <div class="row">
+        <!-- 영화 카드 시작 -->
+        <div class="col-4 px-1" style="width: 18rem;">
+          <div class="card px-0 my-1" >
+            <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" 
+            class="card-img-top" 
+            alt="poster"
+            data-target="#movie-modal1"
+            data-toggle="modal"
+            >
+            <div class="card-body">
+              <h5 class="card-title">밀정</h5>
+              <p class="card-text"><small class="text-muted">2016, 액션</small></p>
+            </div>
+          </div>
+        </div>
+        <!-- 영화 카드 끝 -->
+        <!-- 영화 모달 시작-->
+        <div class="modal fade" id="movie-modal1" tabindex="-1" role="dialog" aria-labelledby="MovieModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="MovieModalLabel1">밀정</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" 
+                    class="card-img-top" 
+                    alt="poster"
+                    >
+                    <div class="modal-body">                    
+                        <p>12세이상관람가</p>
+                        <p>누적관객수 : 2,224,910</p>
+                        <p><hr></p>
+                        <p>까막눈 판수, 우리말에 눈뜨다! vs 조선어학회 대표 정환, ‘우리’의 소중함에 눈뜨다!<p>
+                        <p>1940년대 우리말이 점점 사라져가고 있는 경성. 얼마 남지 않은 시간, 바짝 조여오는 일제의 감시를 피해 ‘말모이’를 끝내야 하는데… 우리말이 금지된 시대, 말과 마음이 모여 사전이 되다.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 영화 모달 끝 -->
+        <div class="col-4 px-1" style="width: 18rem;">
+          <div class="card px-0 my-1">
+            <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">밀정</h5>
+              <p class="card-text"><small class="text-muted">2016, 액션</small></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 px-1" style="width: 18rem;">
+          <div class="card px-0 my-1">
+            <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">밀정</h5>
+              <p class="card-text"><small class="text-muted">2016, 액션</small></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 px-1" style="width: 18rem;">
+            <div class="card px-0 my-1">
+              <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">밀정</h5>
+                <p class="card-text"><small class="text-muted">2016, 액션</small></p>
+              </div>
+            </div>
+        </div>
+        <div class="col-4 px-1" style="width: 18rem;">
+          <div class="card px-0 my-1">
+              <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">밀정</h5>
+                <p class="card-text"><small class="text-muted">2016, 액션</small></p>
+              </div>
+            </div>
+        </div>
+        <div class="col-4 px-1" style="width: 18rem;">
+            <div class="card px-0 my-1">
+              <img src="https://movie-phinf.pstatic.net/20160823_114/1471936485192cjjcD_JPEG/movie_image.jpg?type=m133_190_2" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">밀정</h5>
+                <p class="card-text"><small class="text-muted">2016, 액션</small></p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body2 %}

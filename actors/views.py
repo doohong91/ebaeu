@@ -9,6 +9,9 @@ from .serializers import MovieSerializer, ActorSerializer, GenreSerializer, Rati
 def index(request):
   return render(request,'actors/index.html')
 
+def detail(request):
+  return render(request,'actors/detail.html')
+
 # Create your views here.
 @api_view(['GET'])
 def actor_list(request):

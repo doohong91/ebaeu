@@ -7,7 +7,8 @@ main
   
 {% block body2 %}
 <!-- 배우 순위 시작-->
-<div class="card mb-1" style="max-width: 540px;">
+<div class="card mb-1">
+  <a href="{% url 'actors:detail' %}" class="noLink">
   <div class="row no-gutters">
     <div class="col-4 d-flex justify-content-center align-items-center">
       <div class="col-4 pr-2">
@@ -17,7 +18,7 @@ main
         <img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F140%2F20141017144111891.jpg" 
         class="card-img" 
         alt="profile"
-        style="width: auto; height: 120px;"
+        style="width: auto; height: 125px;"
         >
       </div>
     </div>
@@ -29,9 +30,10 @@ main
       </div>
     </div>
   </div>
+</a>
 </div>
 <!-- 배우 순위 카드 끝 -->
-<div class="card mb-3" style="max-width: 540px;">
+<div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-4 d-flex justify-content-center align-items-center">
         <div class="col-4 pr-2">
@@ -41,7 +43,7 @@ main
           <img src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F140%2F20141017144111891.jpg" 
           class="card-img" 
           alt="profile"
-          style="width: auto; height: 120px;"
+          style="width: auto; height: 125px;"
           >
         </div>
       </div>
