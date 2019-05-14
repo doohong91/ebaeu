@@ -6,11 +6,12 @@ main
 {% endblock title %}
   
 {% block body2 %}
-{% for actor in actors %}
+<h2 class="mr-3 my-3">- 명예의 전당</h2>
 <!-- 배우 순위 시작-->
+{% for actor in actors %}
 <div class="card mb-1">
-  <a href="{% url 'actors:detail' actor.id %}" class="noLink">
-  <div class="row no-gutters">
+  <a class="noLink" href="{% url 'actors:detail' actor.id %}">
+  <div class="row no-gutters ">
     <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
       <div class="col-4 pr-2">
         <p class="text-center">1</p>
@@ -34,20 +35,7 @@ main
   </div>
 </a>
 </div>
-<!-- 배우 순위 카드 끝 -->
 {% endfor %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-  $(function() {
-  function addScore(score, $domElement) {
-    $("<span class='stars-container'>")
-      .addClass("stars-" + score.toString())
-      .text("★★★★★")
-      .appendTo($domElement);
-  }
-
-  addScore(70, $("#fixture"));
-});
-</script>
+<!-- 배우 순위 카드 끝 -->
 {% endblock body2 %}
   
