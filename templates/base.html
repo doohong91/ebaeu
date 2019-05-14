@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" src="./normalize.css">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,23 +17,16 @@
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
+    
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <nav>
       {% include 'nav.html' %}
     </nav>
-    <div class="container">
-      <div class="row">
-        <nav class="col-md-3 bg-light sidebar mt-3">
-          {% include 'sidebar.html' %}
-        </nav>
-        <section class="col-md-9 bg-primary mt-3">
-          {% block body %} {% endblock %}
-        </section>
-      </div>
-    </div>
-
+    {% block body %} 
+    
+    {% endblock %}
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

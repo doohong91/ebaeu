@@ -24,5 +24,5 @@ urlpatterns = [
     url('api/v1/docs', schema_view),
     path('admin/', admin.site.urls),
     path('api/v1/',include('actors.urls')),
-    path('api/v1/accounts/',include('accounts.urls'))
+    # path('api/v1/accounts/',include('accounts.urls'))
 ]

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <nav class="col-md-3 bg-light sidebar mt-3">
+        {% include 'sidebar.html' %}
+      </nav>
+      <section class="col-md-9 mt-3">
+        {% block body2 %}
+          
+        {% endblock body2 %}
+      </section>
+    </div>
+  </div>
+{% endblock body %}
+  
