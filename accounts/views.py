@@ -34,7 +34,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('api/v1/docs')
+    return redirect('actors:main')
 
 
 @login_required        

@@ -1,12 +1,12 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
 
 
 class Actor (models.Model):
     name = models.CharField(max_length=255)
     image = models.URLField(max_length=255)
-
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actors', blank=True)
 
 class Genre(models.Model):
     type = models.CharField(max_length=255)
@@ -23,6 +23,7 @@ class Movie(models.Model):
     score = models.FloatField()
     summary = models.TextField()
     poster_URL = models.URLField(max_length=255)
+    viewed_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='viewed_movies', blank=True)
 
 
 # class Youtube(models.Model):

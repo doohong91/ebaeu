@@ -41,15 +41,15 @@
     {% else %}
       <h3>{{ profile.username }}님이 좋아하는 배우입니다.</h3>
     {% endif %}
-    {% if profile.viewed_movie.all %}
+    {% if profile.like_actors.all %}
       <div class="row">
-        {% for actor in profile.like_actor.all %}
+        {% for actor in profile.like_actors.all %}
         <div class="col-4">
           <div class="card">
             <img src="{{ actor.image }}" class="card-img-top" alt="{{ actor.name }}">
             <div class="card-body">
               <p class="card-text">{{ actor.name }}</p>
-              <a href="{% url 'detail' actor.id %}" class="btn btn-success">바로가기</a>
+              <a href="{% url 'actors:detail' actor.id %}" class="btn btn-success">바로가기</a>
             </div>
           </div>
         </div>
@@ -67,9 +67,9 @@
     {% else %}
       <h3>{{ profile.username }}님이 본 영화입니다.</h3>
     {% endif %}
-    {% if profile.viewed_movie.all %}
+    {% if profile.viewed_movies.all %}
       <div class="row">
-        {% for movie in profile.viewed_movie.all %}
+        {% for movie in profile.viewed_movies.all %}
         <div class="col-4">
           <div class="card">
             <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">

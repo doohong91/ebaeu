@@ -13,3 +13,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['description', 'nickname']
+        widgets = {
+            'description':forms.Textarea(attrs={'placeholder':'자기소개'}),
+            'nickname':forms.TextInput(attrs={'placeholder':'닉네임'})
+        }

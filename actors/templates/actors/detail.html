@@ -26,7 +26,14 @@
     <div class="col-8">
       <div class="card-body">
         <h5 class="card-title block">{{actor.name}}</h5>
-        
+        <a href="{% url 'actors:like' actor.id %}">
+          {% if user in actor.like_users.all %}
+            <i class="fas fa-heart"></i>
+          <!--아니면 -->
+          {% else %}
+            <i class="far fa-heart"></i>
+          {% endif %}
+        </a>
         <p class="card-text">
           <div class="stars-container" style="word-wrap:normal;font-size: 30px; width: 5em">
             <span class="stars-before">★★★★★</span>
