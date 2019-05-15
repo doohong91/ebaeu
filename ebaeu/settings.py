@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'bootstrap4',
     'rest_framework_swagger',
-
+    'rangefilter',
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
