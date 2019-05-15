@@ -47,7 +47,7 @@
         <div class="col-4 px-1" style="width: 18rem;">
           <div class="card px-0 my-1">
             <img src="{{ actor.image }}" class="card-img-top" alt="{{ actor.name }}">
-            <div class="card-body">
+            <div class="card-body" style="padding: 1rem;">
               <p class="card-text">{{ actor.name }}</p>
               <a href="{% url 'actors:detail' actor.id %}" class="btn btn-success">바로가기</a>
             </div>
@@ -81,7 +81,7 @@
       data-target="#movie-modal{{movie.id}}"
       data-toggle="modal"
       >
-      <div class="card-body">
+      <div class="card-body" style="padding: 1rem;">
         <h5 class="card-title mb-1">{{movie.title}}</h5>
         <span class="badge badge-primary" style="font-size: 13px">{{movie.score}}</span>
         <p class="card-text"><small class="text-muted">{{movie.open_date}}</small></p>

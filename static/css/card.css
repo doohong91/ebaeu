@@ -32,7 +32,7 @@
 
 .stars-container {
   position: relative;
-  display: block;
+  display: inline-block;
   color: transparent;
 }
 

@@ -17,22 +17,21 @@ main
           <h5 class="text-center">
             {{ forloop.counter }}
             <br>
-            <span class="badge badge-primary" style="font-size: 13px">{{ actor.get_point|floatformat }}</span>
           </h5>
-          
         </div>
         <div class="col-8">
           <img src="{{ actor.image }}" class="card-img" alt="profile" style="width: auto; height: 125px;">
         </div>
       </div>
       <div class="col-8">
-        <div class="card-body mt-3">
-          <h5 class="card-title">{{ actor.name }}</h5>
+        <div class="card-body" style="padding: 1rem; margin-left: 16px;">
+          <h5 class="card-title mt-3">{{ actor.name }}</h5>
           <p class="card-text">
-            <div class="stars-container" style="word-wrap:normal; font-size: 30px; width: 5em">
+            <div class="stars-container" style="word-wrap:normal; font-size: 30px; width: 5em; height: 45px;">
               <span class="stars-before">★★★★★</span>
               <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
             </div>
+            <span class="ml-3" style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
           </p>
         </div>
       </div>

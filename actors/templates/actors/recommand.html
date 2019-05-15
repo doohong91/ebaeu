@@ -14,30 +14,29 @@
 <div class="card mb-2">
   <div class="row no-gutters mb-1">
     <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
-      <div class="col-4 pr-2">
-        <p class="text-center">{{ actor.get_point|floatformat }}점</p>
-      </div>
+      <div class="col-4 pr-2"></div>
       <div class="col-8">
         <img src={{actor.image}} class="card-img" alt="profile" style="width: auto; height: 125px;">
       </div>
     </div>
     <div class="col-8">
-      <div class="card-body">
-        <h5 class="card-title block">{{actor.name}}</h5>
-        <a href="{% url 'actors:like' actor.id %}">
-          {% if user in actor.like_users.all %}
-          <i class="fas fa-heart"></i>
-          <!--아니면 -->
-          {% else %}
-          <i class="far fa-heart"></i>
-          {% endif %}
-        </a>
+      <div class="card-body" style="padding: 1rem; margin-left: 16px;">
+        <div class="mt-3">
+          <h5 class="card-title d-inline">{{actor.name}}</h5>
+          <a href="{% url 'actors:like' actor.id %}" style="color: red">
+            {% if user in actor.like_users.all %}
+            <i class="fas fa-heart"></i>
+            {% else %}
+            <i class="far fa-heart"></i>
+            {% endif %}
+          </a>
+        </div>
         <p class="card-text">
-          <div class="stars-container" style="word-wrap:normal;font-size: 30px; width: 5em">
+          <div class="stars-container" style="word-wrap:normal;font-size: 30px; width: 5em; height: 45px;">
             <span class="stars-before">★★★★★</span>
             <span class="stars-after" style="width:50%">★★★★★</span>
           </div>
-          
+          <span class="ml-3" style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
         </p>
       </div>
     </div>
@@ -55,7 +54,7 @@
           <div class="card px-0 my-1">
             <img src={{movie.poster_URL}} class="card-img-top" alt="poster" data-target="#movie-modal{{movie.id}}"
               data-toggle="modal">
-            <div class="card-body">
+            <div class="card-body" style="padding: 1rem;">
               <h5 class="card-title mb-1">{{movie.title}}</h5>
               <span class="badge badge-primary" style="font-size: 13px">{{movie.score}}</span>
               <p class="card-text"><small class="text-muted">{{movie.open_date}}</small></p>

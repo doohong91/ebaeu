@@ -27,14 +27,22 @@ def like_actor(request, actor_id):
   return redirect('actors:detail',actor_id)
 
 @login_required  
-def viewed_movie(request, movie_id):
+def viewed_in_detail(request, actor_id, movie_id):
   movie = get_object_or_404(Movie,pk=movie_id)
   if request.user in movie.viewed_users.all():
     movie.viewed_users.remove(request.user)
   else:
     movie.viewed_users.add(request.user)
-  print(request.build_absolute_uri())
-  return redirect('actors:main')
+  return redirect('actors:detail',actor_id)
+
+@login_required  
+def viewed_in_recommand(request,movie_id):
+  movie = get_object_or_404(Movie,pk=movie_id)
+  if request.user in movie.viewed_users.all():
+    movie.viewed_users.remove(request.user)
+  else:
+    movie.viewed_users.add(request.user)
+  return redirect('actors:recommand')  
 
 @login_required  
 def rcmd_movie(request):
