@@ -6,19 +6,22 @@
 
 {% block body %}
   <div class="row my-5">
-    <div class="col-5 d-flex align-items-center justify-content-center">
-      <h2>@{{ profile.username }}
+    <div class="col-5">
+      <div class="d-flex align-items-center justify-content-center">
+        <h2>@{{ profile.username }}</h2>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
         {% if user != profile %}
           {% if user in profile.followers.all %}
-            <a class="btn btn-warning btn-sm" href="{% url 'accounts:follow' profile.id %}">팔로우 취소</a>
-          {% else %}
-            <a class="btn btn-success btn-sm" href="{% url 'accounts:follow' profile.id %}">팔로우</a>
+              <a class="btn btn-warning btn-sm" href="{% url 'accounts:follow' profile.id %}">팔로우 취소</a>
+            {% else %}
+              <a class="btn btn-success btn-sm" href="{% url 'accounts:follow' profile.id %}">팔로우</a>
           {% endif %}
+          {% else %}
+          <a href="{% url 'accounts:change_profile' %}" class="btn btn-info btn-sm">프로필 수정</a>
         {% endif %}
-      </h2>
-      {% if profile == request.user %}
-        <a href="{% url 'accounts:change_profile' %}" class="btn btn-info btn-sm">프로필 수정</a>
-      {% endif %}
+      </div>
+      
       
     </div>
     <div class="col-7">

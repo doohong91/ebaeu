@@ -8,19 +8,27 @@
     <ul class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
+          <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> <span id="hidename" class="ml-1">로그아웃</span></a>
         </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+          <a class="nav-link" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i> <span id="hidename" class="ml-1">로그인</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:signup' %}">SignUp</a>
+          <a class="nav-link" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus"></i> <span id="hidename"> 회원가입</span></a>
         </li>
       {% endif %}
+      <div id="hide">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'actors:main' %}"><i class="fas fa-home"></i> 메인</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'actors:recommand' %}"><i class="fas fa-film"></i> 영화</a>
+        </li>
+      </div>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

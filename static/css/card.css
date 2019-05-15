@@ -48,3 +48,19 @@
   content: '★★★★★';
   color: gold;
 }
+
+#hide {
+  display: none;
+}
+
+@media(max-width:767px){
+  #sidebar{
+    display: none;
+  }
+  #hide{
+    display: block;
+  }
+  #hidename{
+    display: inline;
+  }
+}
