@@ -9,7 +9,7 @@ main
 <h2 class="mr-3 my-2">- 명예의 전당</h2>
 <div class="btn-group my-2" role="group" aria-label="Basic example">
   {% for year in years %}
-    <a href="{{ request.path }}?sort={{ year }}" type="button" class="btn btn-secondary">{{ year }}년</a>
+    <button onclick="location.href='{{ request.path }}?sort={{ year }}'" type="button" class="btn btn-dark">{{ year }}년</button>
   {% endfor %}
 </div>
 <!-- 배우 순위 시작-->

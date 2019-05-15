@@ -16,20 +16,13 @@ def index(request):
   sort = request.GET.get('sort')
   if query:
     actors = Actor.objects.filter(name__icontains = query)
-  elif sort:
+  else:
+    if not sort:
+      sort = 2017
     actors = Actor.objects.annotate(
       movie_count=Count(
         Case(
           When(movies__open_date__year__in = range(int(sort), 2020), then=F('movies'))
-        )
-      )
-    ).filter(movie_count__gte=3)
-    actors = sorted(actors, key=lambda x:x.get_point, reverse=True)[:10]
-  else:
-    actors = Actor.objects.annotate(
-      movie_count=Count(
-        Case(
-          When(movies__open_date__year__in = range(2017, 2020), then=F('movies'))
         )
       )
     ).filter(movie_count__gte=3)
