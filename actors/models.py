@@ -11,10 +11,10 @@ class Actor (models.Model):
 
     @property
     def get_point(self):
-        avg_score = float(self.movies.aggregate(Avg('score'))['score__avg'])
-        avg_aud = float(self.movies.aggregate(Avg('normalized_audience'))['normalized_audience__avg'])
-        avg_sales = float(self.movies.aggregate(Avg('normalized_sales'))['normalized_sales__avg'])
-        return round(sum([avg_score, avg_aud, avg_sales])/3, 4)
+        avg_score = self.movies.aggregate(Avg('score'))['score__avg'] if self.movies.aggregate(Avg('score'))['score__avg'] else 0
+        avg_aud = self.movies.aggregate(Avg('normalized_audience'))['normalized_audience__avg'] if self.movies.aggregate(Avg('normalized_audience'))['normalized_audience__avg'] else 0
+        avg_sales = self.movies.aggregate(Avg('normalized_sales'))['normalized_sales__avg'] if self.movies.aggregate(Avg('normalized_sales'))['normalized_sales__avg'] else 0
+        return sum([avg_score*3, avg_aud*2, avg_sales*2])/7
 
 
 class Genre(models.Model):
@@ -24,11 +24,11 @@ class Genre(models.Model):
 class Movie(models.Model):
     code=models.IntegerField()
     title = models.CharField(max_length=255)
-    score = models.FloatField()
+    score = models.FloatField(default=0)
     sales = models.IntegerField()
-    normalized_sales = models.FloatField()
+    normalized_sales = models.FloatField(default=0)
     audience = models.IntegerField()
-    normalized_audience = models.FloatField()
+    normalized_audience = models.FloatField(default=0)
     open_date=models.DateField()
     poster_URL = models.URLField(max_length=255)
     summary = models.TextField()
