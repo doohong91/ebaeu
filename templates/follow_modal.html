@@ -9,11 +9,17 @@
         </div>
         <div class="modal-body">
           <ul class="list-group">
-            {% for person in profile.followings.all %}  
-              <li class="list-group-item">
-                <a href="{% url 'profile' person.username %}">@{{ person.username }}</a>
-              </li>
-            {% endfor %}
+            {% if profile.followings.all %}
+              {% for person in profile.followings.all %}  
+                <li class="list-group-item">
+                  <a href="{% url 'profile' person.username %}">@{{ person.username }}</a>
+                </li>
+              {% endfor %}
+            {% else %}
+              <div class="blank">
+                <h4>팔로잉이 없습니다.</h4>
+              </div>
+            {% endif %}
           </ul>
         </div>
         <div class="modal-footer">
@@ -33,11 +39,17 @@
         </div>
         <div class="modal-body">
           <ul class="list-group">
-            {% for person in profile.followers.all %}  
-              <li class="list-group-item">
-                <a href="{% url 'profile' person.username %}">@{{ person.username }}</a>
-              </li>
-            {% endfor %}
+            {% if profile.followers.all %}
+              {% for person in profile.followers.all %}  
+                <li class="list-group-item">
+                  <a href="{% url 'profile' person.username %}">@{{ person.username }}</a>
+                </li>
+              {% endfor %}
+            {% else %}
+              <div class="blank">
+                <h4>팔로워가 없습니다.</h4>
+              </div>
+            {% endif %}
           </ul>
         </div>
         <div class="modal-footer">
