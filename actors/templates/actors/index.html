@@ -1,5 +1,5 @@
 {% extends 'bns.html' %}
-
+{% load mathfilters %}
 
 {% block title %}
 main
@@ -14,7 +14,12 @@ main
     <div class="row no-gutters ">
       <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
         <div class="col-4 pr-2">
-          <p class="text-center">1</p>
+          <h5 class="text-center">
+            {{ forloop.counter }}
+            <br>
+            <span class="badge badge-primary" style="font-size: 13px">{{ actor.get_point|floatformat }}</span>
+          </h5>
+          
         </div>
         <div class="col-8">
           <img src="{{ actor.image }}" class="card-img" alt="profile" style="width: auto; height: 125px;">
@@ -26,7 +31,7 @@ main
           <p class="card-text">
             <div class="stars-container" style="word-wrap:normal; font-size: 30px; width: 5em">
               <span class="stars-before">★★★★★</span>
-              <span class="stars-after" style="width:50%">★★★★★</span>
+              <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
             </div>
           </p>
         </div>

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework_swagger',
     'rangefilter',
+    'mathfilters',
     'suit',
     'django.contrib.admin',
     'django.contrib.auth',

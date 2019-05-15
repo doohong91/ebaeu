@@ -1,4 +1,5 @@
 {% extends 'bns.html' %}
+{% load mathfilters %}
 
 {% block title %}
 배우상세정보 - {{actor.name}}
@@ -11,7 +12,7 @@
   <div class="row no-gutters mb-1">
     <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
       <div class="col-4 pr-2">
-        <p class="text-center">1</p>
+        <p class="text-center">{{ actor.get_point|floatformat }}점</p>
       </div>
       <div class="col-8">
         <img src={{actor.image}} 
@@ -37,7 +38,7 @@
         <p class="card-text">
           <div class="stars-container" style="word-wrap:normal;font-size: 30px; width: 5em">
             <span class="stars-before">★★★★★</span>
-            <span class="stars-after" style="width:50%">★★★★★</span>
+            <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
           </div>
         </p>
       </div>
