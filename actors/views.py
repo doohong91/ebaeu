@@ -22,6 +22,15 @@ def detail(request, actor_id):
   return render(request,'actors/detail.html',{'actor':actor, 'form': RatingForm()})
 
 
+def search(request):
+  query = request.GET.get('q')
+  actors = Actor.objects.filter(name__icontains = query)
+  if actors:
+    return render(request,'actors/index.html',{'actors':actors})
+  else:
+    redirect('actors:main')
+
+
 @login_required  
 def like_actor(request, actor_id):
   actor = get_object_or_404(Actor,pk=actor_id)
