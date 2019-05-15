@@ -14,6 +14,6 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['description', 'nickname']
         widgets = {
-            'description':forms.Textarea(attrs={'placeholder':'자기소개'}),
-            'nickname':forms.TextInput(attrs={'placeholder':'닉네임'})
+            'description':forms.Textarea(attrs={'placeholder':'자기소개를 작성해 주세요'}),
+            'nickname':forms.TextInput(attrs={'placeholder':'닉네임을 작성해 주세요'})
         }
