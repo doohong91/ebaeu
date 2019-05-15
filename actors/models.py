@@ -44,8 +44,8 @@ class Movie(models.Model):
 
 
 class Rating(models.Model):
-    comment = models.TextField()
-    score = models.FloatField()
+    comment = models.CharField(max_length=255)
+    score = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     actor = models.ForeignKey(

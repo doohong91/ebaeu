@@ -1,6 +1,7 @@
 {% extends 'bns.html' %}
 {% load mathfilters %}
 {% load humanize %}
+{% load bootstrap4 %}
 
 {% block title %}
 배우상세정보 - {{actor.name}}
@@ -10,11 +11,10 @@
 <h2 class="mr-3 my-3">- 상세정보</h2>
 <!-- 배우 정보 -->
 <div class="card mb-2">
-  <div class="row no-gutters mb-1">
-    <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">
-      <div class="col-4 pr-2"></div>
-      <div class="col-8">
-        <img src={{actor.image}} class="card-img" alt="profile" style="width: auto; height: 125px;">
+  <div class="row no-gutters m-2">
+    <div class="col-4" style="height:150px">
+      <div class="col-8 offset-2 d-flex justify-content-center align-items-center">
+        <img src={{actor.image}} class="card-img h-100" alt="profile" style="width: auto; height: 125px;">
       </div>
     </div>
     <div class="col-8">
@@ -39,7 +39,46 @@
       </div>
     </div>
     <!-- 배우 정보 끝 -->
-    <hr style="width:70px;border: 1px solid orange;">
+  </div>
+  
+  <hr>
+  
+  <!--리뷰 자리-->
+  <div class="row m-2">
+    <div class="col-8">
+      <h5 class="my-3">리뷰</h5>
+      {% if actor.ratings.all %}
+        <ul class="list-group">
+          {% for rating in actor.ratings.all %}
+          <li class="list-group-item">
+            <form method="post" action="{% url 'actors:delete_rating' actor.id rating.id %}">
+              <span class="badge badge-info mx-3 p-2">{{ rating.score }}</span>
+              <span>{{ rating.comment }}</span>
+              <!--<button class="btn btn-warning btn-sm" href="{% url 'actors:update_rating' actor.id rating.id %}" type="submit">수정</button>-->
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div class="col-4">
+      <h5 class="my-3">리뷰 작성하기</h5>
+      <form method="post" action="{% url 'actors:create_rating' actor.id %}">
+          {% csrf_token %}
+          <!--{% bootstrap_form form %}-->
+          {% bootstrap_form form %}
+          <button class="btn btn-primary" type="submit">작성</button>
+      </form>
+    </div>
+  </div>
+  <!--리뷰 끝-->
+  
+  <hr>
+  
+  <div class="row no-gutters m-1">
     <div class="container mt-1" style="padding-left: 20px; padding-right: 20px">
       <div class="row">
 
