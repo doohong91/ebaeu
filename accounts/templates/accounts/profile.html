@@ -44,8 +44,8 @@
     {% if profile.like_actors.all %}
       <div class="row">
         {% for actor in profile.like_actors.all %}
-        <div class="col-4">
-          <div class="card">
+        <div class="col-4 px-1" style="width: 18rem;">
+          <div class="card px-0 my-1">
             <img src="{{ actor.image }}" class="card-img-top" alt="{{ actor.name }}">
             <div class="card-body">
               <p class="card-text">{{ actor.name }}</p>
@@ -70,15 +70,9 @@
     {% if profile.viewed_movies.all %}
       <div class="row">
         {% for movie in profile.viewed_movies.all %}
-        <div class="col-4">
-          <div class="card">
-            <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
-            <div class="card-body">
-              <p class="card-text">{{ movie.title }}</p>
-              <a href="#" class="btn btn-success">바로가기</a>
-            </div>
-          </div>
-        </div>
+        
+        {% include 'movie_card.html' %}
+
         {% endfor %}
       </div>
     {% else %}
@@ -87,5 +81,5 @@
       </div>
     {% endif %}
   </div>
-  {% include 'modal.html' %}
+{% include 'follow_modal.html' %}
 {% endblock %}
