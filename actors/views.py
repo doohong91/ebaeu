@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Case, When, F
 from .models import Actor, Movie, Genre, Rating
 from .forms import RatingForm
 from .serializers import MovieSerializer, ActorSerializer, GenreSerializer, RatingSerializer
@@ -12,23 +12,34 @@ from django.contrib.auth import get_user_model
 
 
 def index(request):
-  actors = Actor.objects.annotate(movie_count=Count('movies')).filter(movie_count__gte=3)
-  actors = sorted(actors, key=lambda x:x.get_point, reverse=True)
-  return render(request,'actors/index.html',{'actors':actors[:10]})
+  query = request.GET.get('q')
+  sort = request.GET.get('sort')
+  if query:
+    actors = Actor.objects.filter(name__icontains = query)
+  elif sort:
+    actors = Actor.objects.annotate(
+      movie_count=Count(
+        Case(
+          When(movies__open_date__year__in = range(int(sort), 2020), then=F('movies'))
+        )
+      )
+    ).filter(movie_count__gte=3)
+    actors = sorted(actors, key=lambda x:x.get_point, reverse=True)[:10]
+  else:
+    actors = Actor.objects.annotate(
+      movie_count=Count(
+        Case(
+          When(movies__open_date__year__in = range(2017, 2020), then=F('movies'))
+        )
+      )
+    ).filter(movie_count__gte=3)
+    actors = sorted(actors, key=lambda x:x.get_point, reverse=True)[:10]
+  return render(request,'actors/index.html',{'actors': actors, 'years': range(2010, 2020)})
 
 
 def detail(request, actor_id):
   actor = get_object_or_404(Actor,pk=actor_id)
   return render(request,'actors/detail.html',{'actor':actor, 'form': RatingForm()})
-
-
-def search(request):
-  query = request.GET.get('q')
-  actors = Actor.objects.filter(name__icontains = query)
-  if actors:
-    return render(request,'actors/index.html',{'actors':actors})
-  else:
-    redirect('actors:main')
 
 
 @login_required  
