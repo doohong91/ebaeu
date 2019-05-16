@@ -27,7 +27,7 @@
                     </a>
                     <p class="text-center mt-1">
                       {{ actor.name }}
-                      <a href="{% url 'actors:like' actor.id %}" style="color: red">
+                      <a href="{% url 'actors:like' actor.id %}" style="color: #c71585">
                       {% if user in actor.like_users.all %}
                         <i class="fas fa-heart"></i>
                       {% else %}

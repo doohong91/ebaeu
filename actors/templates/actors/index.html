@@ -6,14 +6,24 @@ main
 {% endblock title %}
 
 {% block body %}
-<div class="btn-group my-2 d-flex justify-content-center align-items-center" role="group" aria-label="Basic example">
-  {% for year in years %}
-    <button onclick="location.href='{{ request.path }}?sort={{ year }}'" type="button" class="btn btn-dark">{{ year }}년</button>
-  {% endfor %}
-</div>
+{% if years %}
+  <div class="btn-group my-2" role="group" aria-label="Button group with nested dropdown">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        연도별 순위 보기
+      </button>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        {% for year in years %}
+        <a class="dropdown-item" href="{{ request.path }}?sort={{ year }}">{{ year }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
 <!-- 배우 순위 시작-->
 {% for actor in actors %}
-<div class="card mb-1">
+<div class="card mt-2 mb-1">
   <a class="noLink" href="{% url 'actors:detail' actor.id %}">
     <div class="row no-gutters ">
       <div class="col-4 d-flex justify-content-center align-items-center" style="height:150px">

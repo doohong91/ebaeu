@@ -9,32 +9,31 @@
 
 {% block body %}
 <!-- 배우 정보 -->
-<div class="card my-2">
-  <div class="row no-gutters m-2">
-    <div class="col-4" style="height:150px">
-      <div class="col-8 offset-2 d-flex justify-content-center align-items-center">
-        <img src={{actor.image}} class="card-img" alt="profile" style="width: auto; height: 125px;">
-      </div>
+<div class="card mt-2">
+  <div class="row col-8 offset-2 my-2">
+    <div class="col-sm-12 col-md-3 d-flex align-items-center justify-content-center">
+      <a href="{% url 'actors:detail' actor.id %}">
+        <img src={{actor.image}} class="card-img" alt="profile" style="height:180px; width:auto">
+      </a>
     </div>
-    <div class="col-8">
-      <div class="card-body" style="padding: 1rem; margin-left: 16px;">
-        <div class="mt-3">
-            <h5 class="card-title d-inline">{{actor.name}}</h5>
-            <a href="{% url 'actors:like' actor.id %}" style="color: red">
+    <div class="col-sm-12 col-md-9 d-flex align-items-center justify-content-center">
+      <div class="card-body">
+        <div>
+          <h3 class="card-title d-inline">{{actor.name}}  
+            <a href="{% url 'actors:like' actor.id %}" style="color: #db7093">
               {% if user in actor.like_users.all %}
               <i class="fas fa-heart"></i>
               {% else %}
               <i class="far fa-heart"></i>
               {% endif %}
             </a>
-          </div>
-        <p class="card-text">
+          </h3>
+        </div>
           <div class="stars-container" style="word-wrap:normal;font-size: 30px; width: 5em; height: 45px;">
             <span class="stars-before">★★★★★</span>
             <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
           </div>
-          <span class="ml-3" style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
-        </p>
+          <span style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
       </div>
     </div>
     <!-- 배우 정보 끝 -->
@@ -43,28 +42,31 @@
   <hr>
   
   <!--리뷰 자리-->
-  <div class="row m-2">
-    <div class="col-8">
-      <h5 class="my-3">리뷰</h5>
+  <div class="row mx-2">
+    <div class="col-sm-12 col-md-8" style="height: 300px; overflow-y: scroll;">
+      <h5 class="mb-2">리뷰</h5>
       {% if actor.ratings.all %}
         <ul class="list-group overflow-auto">
           {% for rating in actor.ratings.all %}
           <li class="list-group-item">
             <form method="post" action="{% url 'actors:delete_rating' actor.id rating.id %}">
-              <span class="badge badge-info mx-3 p-2">{{ rating.score }}</span>
-              <span>{{ rating.comment }}</span>
-              <!--<button class="btn btn-warning btn-sm" href="{% url 'actors:update_rating' actor.id rating.id %}" type="submit">수정</button>-->
-              <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              {% csrf_token %}
+              <div class="d-flex">
+                <span class="mr-3">{{ rating.user.username }}</span>
+                <span class="badge badge-info badge-pill mr-5">{{ rating.score }}</span>
+                <span class="mr-auto">{{ rating.comment }}</span>
+                <a class="mx-1" href="{% url 'actors:update_rating' actor.id rating.id %}"><i class="far fa-edit fa-lg"></i></a>
+                <button class="btn btn-link mx-1 b-0 p-0" type="submit"><i class="fas fa-eraser fa-lg"></i></button>
+              </div>
+     
             </form>
           </li>
           {% endfor %}
         </ul>
       {% endif %}
     </div>
-    <div class="col-4">
-      <h5 class="my-3">리뷰 작성하기</h5>
+    <div class="col-sm-12 col-md-4">
+      <h5 class="mb-3">리뷰 작성하기</h5>
       <form method="post" action="{% url 'actors:create_rating' actor.id %}">
           {% csrf_token %}
           <!--{% bootstrap_form form %}-->
@@ -85,7 +87,7 @@
 
 
         <!-- 영화 카드 시작 -->
-        <div class="col-4 px-1" style="width: 18rem;">
+        <div class="col-sm-12 col-md-4">
           <div class="card px-0 my-1">
             <img src={{movie.poster_URL}} class="card-img-top" alt="poster" data-target="#movie-modal{{movie.id}}"
               data-toggle="modal">

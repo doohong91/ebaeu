@@ -18,13 +18,15 @@ from django.urls import path,include
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 from accounts import views as accounts_views
+from actors import views as actors_views
 
 schema_view = get_swagger_view(title='Movie API')
 
 urlpatterns = [
     url('api/v1/docs', schema_view),
+    path('', actors_views.index, name='main'),
     path('admin/', admin.site.urls),
     path('actors/', include('actors.urls')),
     path('accounts/', include('accounts.urls')),
-    path('<str:username>/', accounts_views.profile, name='profile'),
+    path('profile_<str:username>/', accounts_views.profile, name='profile'),
 ]

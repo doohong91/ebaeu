@@ -13,17 +13,19 @@
   <div class="card my-2">
     <div class="row col-6 offset-3 mt-2">
       <div class="col-3 d-flex align-items-center justify-content-center">
-        <img src={{actor.image}} class="card-img" alt="profile" style="height:120px; width:auto">
+        <a href="{% url 'actors:detail' actor.id %}">
+          <img src={{actor.image}} class="card-img" alt="profile" style="height:120px; width:auto">
+        </a>
       </div>
       <div class="col-9">
         <div class="card-body">
           <div>
-            <h5 class="card-title d-inline">{{actor.name}}</h5>
-            <a href="{% url 'actors:like' actor.id %}" style="color: red">
+            <h4 class="card-title d-inline">{{actor.name}}</h4>
+            <a href="{% url 'actors:like' actor.id %}" style="color: #db7093">
               {% if user in actor.like_users.all %}
-              <i class="fas fa-heart"></i>
+              <i class="fas fa-heart fa-lg"></i>
               {% else %}
-              <i class="far fa-heart"></i>
+              <i class="far fa-heart fa-lg"></i>
               {% endif %}
             </a>
           </div>
@@ -32,15 +34,15 @@
               <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
             </div>
             <span class="ml-3" style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
+            <div class="d-flex align-items-center justify-content-center">
+              <a data-toggle="collapse" href="#collapseMovie{{ actor.id }}" role="button" aria-expanded="false" aria-controls="collapseMovie{{ actor.id }}">
+                <i class="fas fa-chevron-down fa-2x" style="color: #d2b48c"></i>
+              </a>
+            </div>
         </div>
       </div>
     </div>
     <!-- 배우 정보 끝 -->
-    <div class="d-flex align-items-center justify-content-center">
-      <a data-toggle="collapse" href="#collapseMovie{{ actor.id }}" role="button" aria-expanded="false" aria-controls="collapseMovie{{ actor.id }}">
-        <i class="fas fa-chevron-down fa-2x" style="color: #d2b48c"></i>
-      </a>
-    </div>
     <div class="collapse mt-1" id="collapseMovie{{ actor.id }}" style="padding-left: 20px; padding-right: 20px">
       <div class="row">
         {% for movie in actor.movies.all %}

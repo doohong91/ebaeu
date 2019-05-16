@@ -55,7 +55,7 @@ def profile(request, username):
 @login_required 
 def change_profile(request):
     if request.method == "POST":
-        profile_form = ProfileForm(data=request.POST, instance=request.user.profile, files=request.FILES)
+        profile_form = ProfileForm(data=request.POST, instance=request.user.profile)
         if profile_form.is_valid():
             profile_form.save()
             return redirect('profile', request.user.username)

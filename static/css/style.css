@@ -1,3 +1,11 @@
+div {
+  font-family: 'Yeon Sung', cursive;
+}
+
+h1 {
+  font-family: 'Jua', sans-serif;
+}
+
 .noLink{
   color: black;
   text-decoration: none;
@@ -39,14 +47,14 @@
 .stars-before {
   position: absolute;
   content: '★★★★★';
-  color: lightgray;
+  color: #fff5ee;
 }
 
 .stars-after {
   overflow: hidden;
   position: absolute;
   content: '★★★★★';
-  color: gold;
+  color: #ffa500;
 }
 
 
@@ -56,12 +64,12 @@
   justify-content: center;
   height: 400px;
   background-size: cover;
-  background-color: black;
+  background-color: #708090;
   background-position: center;
   color:white;
 }
 
-#fadein {
+.fadein {
   animation: fadein 2s;
   -webkit-animation: fadein 2s; /* Safari and Chrome */
 }
