@@ -26,7 +26,8 @@ def login(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-        return redirect('profile', request.user.username)
+            return redirect('profile', request.user.username)
+        return redirect('accounts:login')
     else:
         form = AuthenticationForm()
         return render(request, 'accounts/form.html', {'form': form, 'name': 'Login'})
