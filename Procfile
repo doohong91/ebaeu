@@ -1,1 +1,1 @@
-web: gunicorn your_wsgi.wsgi --log-file -
+web: gunicorn ebaeu.wsgi --log-file -
