@@ -32,10 +32,13 @@
     <nav>
       {% include 'nav.html' %}
     </nav>
-    <article class="container">
+    <header class="header" style="text-align:center;" id="detail_header">
+        <h2></h2>       
+    </header>
+    <div class="container">
       {% block body %} 
       {% endblock %}
-    </article>
+    </div>
     <div class="d-flex justify-content-center align-items-center" style="height:75px;"><small class="text-muted text-center" style="font-size:15px;">- ebaeu 2019 -</small></div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -52,5 +55,19 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const header = document.querySelector('header')
+      const URL = document.URL
+      if(URL.includes('recommand/actor')){
+        header.id="actor_header"
+        header.children[0].innerText="배우 추천"
+      }else if(URL.includes('recommand/movie')){
+        header.id="movie_header"
+        header.children[0].innerText="영화 추천"
+      }else if(URL.includes('actors')){
+        header.id="main_header"
+        header.children[0].innerText="명예의 전당"
+      }
+    </script>
   </body>
 </html>

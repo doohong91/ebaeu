@@ -49,18 +49,25 @@
   color: gold;
 }
 
-#hide {
-  display: none;
+
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-size: cover;
+  background-color: black;
+  color:white;
 }
 
-@media(max-width:767px){
-  #sidebar{
-    display: none;
-  }
-  #hide{
-    display: block;
-  }
-  #hidename{
-    display: inline;
-  }
+#main_header{
+  background-image: url( "../image/header2.png" );
+}
+
+#movie_header{
+  background-image: url( "../image/header1.png" );
+}
+
+#actor_header{
+  background-image: url( "../image/header3.jpg" );
 }
