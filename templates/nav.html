@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'main' %}"><i class="far fa-star"></i> Ebaeu</a>
+  <a class="navbar-brand" href="{% url 'main' %}"><i class="far fa-star"></i>Ebaeu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,13 +7,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'main' %}"><i class="fas fa-home"></i> 메인</a>
+          <a class="nav-link" href="{% url 'main' %}"><i class="fas fa-home"></i>메인</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'actors:recommand_movie' %}"><small>배우<i class="fas fa-long-arrow-alt-right"></i>영화</small></a>
+          <a class="nav-link" href="{% url 'actors:recommand_movie' %}">배우<i class="fas fa-long-arrow-alt-right"></i>영화</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'actors:recommand_actor' %}"><small>영화<i class="fas fa-long-arrow-alt-right"></i>배우</small></a>
+          <a class="nav-link" href="{% url 'actors:recommand_actor' %}">영화<i class="fas fa-long-arrow-alt-right"></i>배우</a>
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -22,14 +22,14 @@
           <a class="nav-link" href="{% url 'profile' user.username %}">{{ user.username }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i><span class="ml-1">Logout</span></a>
+          <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i><span class="ml-1">로그아웃</span></a>
         </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i><span class="ml-1">Login</span></a>
+          <a class="nav-link" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i><span class="ml-1">로그인</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus"></i><span>Singup</span></a>
+          <a class="nav-link" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus"></i><span>회원가입</span></a>
         </li>
       {% endif %}
     </ul>

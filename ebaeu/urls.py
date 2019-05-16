@@ -28,5 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('actors/', include('actors.urls')),
     path('accounts/', include('accounts.urls')),
-    path('profile_<str:username>/', accounts_views.profile, name='profile'),
+    path('@<str:username>/', accounts_views.profile, name='profile'),
 ]

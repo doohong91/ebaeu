@@ -15,7 +15,7 @@ class Actor (models.Model):
         avg_score = self.movies.aggregate(Avg('score'))['score__avg'] if self.movies.aggregate(Avg('score'))['score__avg'] else 0
         avg_aud = self.movies.aggregate(Avg('normalized_audience'))['normalized_audience__avg'] if self.movies.aggregate(Avg('normalized_audience'))['normalized_audience__avg'] else 0
         avg_sales = self.movies.aggregate(Avg('normalized_sales'))['normalized_sales__avg'] if self.movies.aggregate(Avg('normalized_sales'))['normalized_sales__avg'] else 0
-        return sum([avg_score*5, avg_aud*3, avg_sales*3])/11
+        return sum([avg_score*2, avg_aud*1, avg_sales*1])/4
         
     def __str__(self):
         return self.name

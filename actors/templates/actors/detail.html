@@ -8,8 +8,9 @@
 {% endblock title %}
 
 {% block body %}
+<button type="button" onclick="goBack()" class="btn btn-dark btn-lg my-3">뒤로가기</button>
 <!-- 배우 정보 -->
-<div class="card mt-2">
+<div class="card">
   <div class="row col-8 offset-2 my-2">
     <div class="col-sm-12 col-md-3 d-flex align-items-center justify-content-center">
       <a href="{% url 'actors:detail' actor.id %}">
@@ -19,28 +20,28 @@
     <div class="col-sm-12 col-md-9 d-flex align-items-center justify-content-center">
       <div class="card-body">
         <div>
-          <h3 class="card-title d-inline">{{actor.name}}  
+          <h3 class="card-title">{{actor.name}}  
             <a href="{% url 'actors:like' actor.id %}" style="color: #db7093">
               {% if user in actor.like_users.all %}
-              <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
               {% else %}
-              <i class="far fa-heart"></i>
+                <i class="far fa-heart"></i>
               {% endif %}
             </a>
           </h3>
+          <h5><button class="btn btn-link px-1" data-toggle="modal" data-target="#likeModal">{{ actor.like_users.count }}</button>명이 좋아합니다.</h5>
         </div>
           <div class="stars-container" style="word-wrap:normal;font-size: 30px; width: 5em; height: 45px;">
             <span class="stars-before">★★★★★</span>
             <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
           </div>
-          <span style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
+         <span style="position: absolute;font-size:20px;margin-top:0.6rem">신뢰도 {{ actor.get_point|mul:10|floatformat }}%</span>
       </div>
     </div>
     <!-- 배우 정보 끝 -->
   </div>
-  
+  {% include 'like_modal.html' %}
   <hr>
-  
   <!--리뷰 자리-->
   <div class="row mx-2">
     <div class="col-sm-12 col-md-8" style="height: 300px; overflow-y: scroll;">
@@ -48,19 +49,20 @@
       {% if actor.ratings.all %}
         <ul class="list-group overflow-auto">
           {% for rating in actor.ratings.all %}
-          <li class="list-group-item">
-            <form method="post" action="{% url 'actors:delete_rating' actor.id rating.id %}">
-              {% csrf_token %}
-              <div class="d-flex">
-                <span class="mr-3">{{ rating.user.username }}</span>
-                <span class="badge badge-info badge-pill mr-5">{{ rating.score }}</span>
-                <span class="mr-auto">{{ rating.comment }}</span>
-                <a class="mx-1" href="{% url 'actors:update_rating' actor.id rating.id %}"><i class="far fa-edit fa-lg"></i></a>
-                <button class="btn btn-link mx-1 b-0 p-0" type="submit"><i class="fas fa-eraser fa-lg"></i></button>
-              </div>
-     
-            </form>
-          </li>
+            <li class="list-group-item">
+              <form method="post" action="{% url 'actors:delete_rating' actor.id rating.id %}">
+                {% csrf_token %}
+                <p class="">
+                  <a class="mr-3" href="mailto:">{{ rating.user.username }}</a>
+                  <a class="mx-1" href="{% url 'actors:update_rating' actor.id rating.id %}"><i class="far fa-edit fa-lg"></i></a>
+                  <button class="btn btn-link mx-1 b-0 p-0" type="submit"><i class="fas fa-eraser fa-lg"></i></button>
+                </p>
+                <div class="d-flex">
+                  <span class="badge badge-info badge-pill mr-3">{{ rating.score }}점</span>
+                  <span class="mr-auto">{{ rating.comment }}</span>
+                </div>
+              </form>
+            </li>
           {% endfor %}
         </ul>
       {% endif %}
@@ -76,16 +78,11 @@
     </div>
   </div>
   <!--리뷰 끝-->
-  
   <hr>
-  
   <div class="row no-gutters m-1">
     <div class="container mt-1" style="padding-left: 20px; padding-right: 20px">
       <div class="row">
-
         {% for movie in actor.movies.all %}
-
-
         <!-- 영화 카드 시작 -->
         <div class="col-sm-12 col-md-4">
           <div class="card px-0 my-1">
@@ -112,46 +109,15 @@
           </div>
         </div>
         <!-- 영화 카드 끝 -->
-        <!-- 영화 모달 시작-->
-        <div class="modal fade" id="movie-modal{{movie.id}}" tabindex="-1" role="dialog"
-          aria-labelledby="MovieModalLabel{{movie.id}}" aria-hidden="true">
-          <div class="modal-dialog" role="document" style="width: 450px;">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="MovieModalLabel{{movie.id}}">{{movie.title}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <img src={{movie.poster_URL}} class="card-img-top" alt="poster">
-              <div class="modal-body">
-                <p><i class="fas fa-star-half-alt"></i> {{movie.score}} / 10</p>
-                <p><i class="fas fa-users"></i> {{movie.audience|intcomma}} 명</p>
-                <p><i class="fas fa-won-sign"></i> {{movie.sales|intcomma}} 원</p>
-                <p>
-                  <hr>
-                </p>
-                <p><i class="fas fa-theater-masks"></i>
-                  {% for actor in movie.actors.all %}
-                  <a href="{% url 'actors:detail' actor.id %}">{{actor.name}} </a>
-                  {% endfor %}
-                </p>
-                <p>
-                  <hr>
-                </p>
-                <p>{{movie.summary}}</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 영화 모달 끝 -->
-
+        {% include 'movie_modal.html' %}
         {% endfor %}
       </div>
     </div>
   </div>
 </div>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 {% endblock%}

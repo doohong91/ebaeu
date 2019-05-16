@@ -33,7 +33,7 @@
               <span class="stars-before">★★★★★</span>
               <span class="stars-after" style="width:{{ actor.get_point|mul:10 }}%">★★★★★</span>
             </div>
-            <span class="ml-3" style="position: absolute;font-size:20px;margin-top:0.6rem">{{ actor.get_point|floatformat }}점</span>
+            <span style="position: absolute;font-size:20px;margin-top:0.6rem">신뢰도 {{ actor.get_point|mul:10|floatformat }}%</span>
             <div class="d-flex align-items-center justify-content-center">
               <a data-toggle="collapse" href="#collapseMovie{{ actor.id }}" role="button" aria-expanded="false" aria-controls="collapseMovie{{ actor.id }}">
                 <i class="fas fa-chevron-down fa-2x" style="color: #d2b48c"></i>
@@ -72,38 +72,7 @@
               </div>
             </div>
             <!-- 영화 카드 끝 -->
-            <!-- 영화 모달 시작-->
-            <div class="modal fade" id="movie-modal{{movie.id}}" tabindex="-1" role="dialog"
-              aria-labelledby="MovieModalLabel{{movie.id}}" aria-hidden="true">
-              <div class="modal-dialog" role="document" style="width: 450px;">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="MovieModalLabel{{movie.id}}">{{movie.title}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <img src={{movie.poster_URL}} class="card-img-top" alt="poster">
-                  <div class="modal-body">
-                    <p><i class="fas fa-star-half-alt"></i> {{movie.score}} / 10</p>
-                    <p><i class="fas fa-users"></i> {{movie.audience|intcomma}} 명</p>
-                    <p><i class="fas fa-won-sign"></i> {{movie.sales|intcomma}} 원</p>
-                    <hr>
-                    <p><i class="fas fa-theater-masks"></i>
-                      {% for actor in movie.actors.all %}
-                        <a href="{% url 'actors:detail' actor.id %}">{{actor.name}} </a>
-                      {% endfor %}
-                    </p>
-                    <hr>
-                    <p>{{movie.summary}}</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 영화 모달 끝 -->
+            {% include 'movie_modal.html' %}
           {% endif %}
         {% endfor %}
       </div>

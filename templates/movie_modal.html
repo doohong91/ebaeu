@@ -1,0 +1,37 @@
+{% load humanize %}
+<!-- 영화 모달 시작-->
+<div class="modal fade" id="movie-modal{{movie.id}}" tabindex="-1" role="dialog"
+  aria-labelledby="MovieModalLabel{{movie.id}}" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 450px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="MovieModalLabel{{movie.id}}">{{movie.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <img src={{movie.poster_URL}} class="card-img-top" alt="poster">
+      <div class="modal-body">
+        <p><i class="fas fa-star-half-alt"></i> {{movie.score}} / 10</p>
+        <p><i class="fas fa-users"></i> {{movie.audience|intcomma}} 명</p>
+        <p><i class="fas fa-won-sign"></i> {{movie.sales|intcomma}} 원</p>
+        <p>
+          <hr>
+        </p>
+        <p><i class="fas fa-theater-masks"></i>
+          {% for actor in movie.actors.all %}
+          <a href="{% url 'actors:detail' actor.id %}">{{actor.name}} </a>
+          {% endfor %}
+        </p>
+        <p>
+          <hr>
+        </p>
+        <p>{{movie.summary}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 영화 모달 끝 -->

@@ -39,6 +39,7 @@
       }
       #search_header{
         background-image: url('{% static "/image/header4.jpg" %}');
+        color: #8b008b;
       }
       #detail_header{
         background-image: url('{% static "/image/header0.jpg" %}');
@@ -97,7 +98,7 @@
         header.children[0].innerHTML="<h1>'이 배우' 회원가입</h1>"
       }else if(URL.includes('accounts/change_profile')){
         header.children[0].innerHTML="<h1>회원정보를 수정하세요</h1>"
-      }else if(URL.includes('profile_')){
+      }else if(URL.includes('@')){
         header.children[0].innerHTML="<h1>회원정보</h1>"
       }else{
         header.id="main_header"
