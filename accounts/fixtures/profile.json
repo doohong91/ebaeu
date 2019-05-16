@@ -1,0 +1,1 @@
+[{"model": "accounts.profile", "pk": 1, "fields": {"description": "", "nickname": "", "user": 1}}, {"model": "accounts.profile", "pk": 2, "fields": {"description": "\ud638\uc624\uc624\uc624\uc6b0", "nickname": "\uad00\ub9ac\uc790", "user": 2}}]
