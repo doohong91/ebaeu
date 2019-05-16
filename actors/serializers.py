@@ -11,17 +11,8 @@ class RatingSerializer(serializers.ModelSerializer):
             'score',
         ]
 
-# class YoutubeSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Youtube
-#         fields = [
-#             'id',
-#             'link',
-#         ]
-
 
 class MovieSerializer(serializers.ModelSerializer):
-    # youtube = YoutubeSerializer(many=True)
 
     class Meta:
         model = Movie
