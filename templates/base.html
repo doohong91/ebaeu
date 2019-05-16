@@ -27,6 +27,17 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>{% block title %}{% endblock %}</title>
+    <style type="text/css">
+      #main_header{
+        background-image: url('{% static "/image/header2.png" %}');
+      }
+      #movie_header{
+        background-image: url('{% static "/image/header1.png" %}');
+      }
+      #actor_header{
+        background-image: url('{% static "/image/header3.jpg" %}');
+      }
+    </style>
   </head>
   <body>
     <nav>

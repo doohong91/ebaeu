@@ -7,71 +7,68 @@
 {% endblock title %}
 
 {% block body %}
-
-<h2 class="mr-3 my-3">- 배우 추천</h2>
-{% for movie in viewed_movies %}
-
-<div class="card mb-2">
-  <div class="row no-gutters mb-1">
-    <div class="col-3">
-      <div class="m-3">
-        <img src="{{ movie.poster_URL }}" class="card-img" alt="{{ movie.title }}" data-target="#movie-modal{{movie.id}}" data-toggle="modal">
-        <h5 class="card-title mt-2 text-center">{{ movie.title }}</h5>
-      </div>
-    </div>
-    <div class="col-9" style="height: 400px; overflow-y: scroll;">
-      <div class="card-body" style="padding: 1rem; margin-left: 16px;">
-        <div class="row mt-2">
-          {% for actor in movie.actors.all %}
-            {% if actor not in user.like_actors.all %}
-              <div class="col-2">
-                <a href="{% url 'actors:detail' actor.id %}">
-                  <img src="{{ actor.image }}" class="card-img" alt="{{ actor.name }}">
-                </a>
-                <p class="text-center mt-1">
-                  {{ actor.name }}
-                  <a href="{% url 'actors:like' actor.id %}" style="color: red">
-                  {% if user in actor.like_users.all %}
-                    <i class="fas fa-heart"></i>
-                  {% else %}
-                    <i class="far fa-heart"></i>
-                  {% endif %}
-                </a>
-                </p>
-              </div>
-            {% endif %}
-          {% endfor %}
+  {% for movie in viewed_movies %}
+    <div class="card my-2">
+      <div class="row no-gutters mb-1">
+        <div class="col-3">
+          <div class="m-3">
+            <img src="{{ movie.poster_URL }}" class="card-img" alt="{{ movie.title }}" data-target="#movie-modal{{movie.id}}" data-toggle="modal">
+            <h5 class="card-title mt-2 text-center">{{ movie.title }}</h5>
+          </div>
+        </div>
+        <div class="col-9" style="height: 400px; overflow-y: scroll;">
+          <div class="card-body" style="padding: 1rem; margin-left: 16px;">
+            <div class="row mt-2">
+              {% for actor in movie.actors.all %}
+                {% if actor not in user.like_actors.all %}
+                  <div class="col-4 col-md-3 col-lg-2">
+                    <a href="{% url 'actors:detail' actor.id %}">
+                      <img src="{{ actor.image }}" class="card-img" alt="{{ actor.name }}">
+                    </a>
+                    <p class="text-center mt-1">
+                      {{ actor.name }}
+                      <a href="{% url 'actors:like' actor.id %}" style="color: red">
+                      {% if user in actor.like_users.all %}
+                        <i class="fas fa-heart"></i>
+                      {% else %}
+                        <i class="far fa-heart"></i>
+                      {% endif %}
+                    </a>
+                    </p>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- 영화 모달 시작-->
-<div class="modal fade" id="movie-modal{{movie.id}}" tabindex="-1" role="dialog"
-  aria-labelledby="MovieModalLabel{{movie.id}}" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="width: 450px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="MovieModalLabel{{movie.id}}">{{movie.title}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <img src={{movie.poster_URL}} class="card-img-top" alt="poster">
-      <div class="modal-body">
-        <p><i class="fas fa-star-half-alt"></i> {{movie.score}} / 10</p>
-        <p><i class="fas fa-users"></i> {{movie.audience|intcomma}} 명</p>
-        <p><i class="fas fa-won-sign"></i> {{movie.sales|intcomma}} 원</p>
-        <hr>
-        <p>{{movie.summary}}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <!-- 영화 모달 시작-->
+    <div class="modal fade" id="movie-modal{{movie.id}}" tabindex="-1" role="dialog"
+      aria-labelledby="MovieModalLabel{{movie.id}}" aria-hidden="true">
+      <div class="modal-dialog" role="document" style="width: 450px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="MovieModalLabel{{movie.id}}">{{movie.title}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <img src={{movie.poster_URL}} class="card-img-top" alt="poster">
+          <div class="modal-body">
+            <p><i class="fas fa-star-half-alt"></i> {{movie.score}} / 10</p>
+            <p><i class="fas fa-users"></i> {{movie.audience|intcomma}} 명</p>
+            <p><i class="fas fa-won-sign"></i> {{movie.sales|intcomma}} 원</p>
+            <hr>
+            <p>{{movie.summary}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- 영화 모달 끝 -->
-{% endfor %}
+    <!-- 영화 모달 끝 -->
+  {% endfor %}
 
 {% endblock %}

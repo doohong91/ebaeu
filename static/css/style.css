@@ -61,13 +61,13 @@
 }
 
 #main_header{
-  background-image: url( "../image/header2.png" );
+  background-image: #ffe url( "../image/header2.png" ) repeat;
 }
 
 #movie_header{
-  background-image: url( "../image/header1.png" );
+  background-image: #ffe url( "../image/header1.png" ) repeat;
 }
 
 #actor_header{
-  background-image: url( "../image/header3.jpg" );
+  background-image: #ffe url( "../image/header3.jpg" ) repeat;
 }
