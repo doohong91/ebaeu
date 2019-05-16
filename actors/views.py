@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Case, When, F
 from .models import Actor, Movie, Genre, Rating
 from .forms import RatingForm
-from .serializers import MovieSerializer, ActorSerializer, GenreSerializer, RatingSerializer
+# from .serializers import MovieSerializer, ActorSerializer, GenreSerializer, RatingSerializer
+from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth import get_user_model
 
@@ -42,34 +43,30 @@ def like_actor(request, actor_id):
     actor.like_users.remove(request.user)
   else:
     actor.like_users.add(request.user)
-  return redirect('actors:detail',actor_id)
+  return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required  
-def viewed_in_detail(request, actor_id, movie_id):
+def viewed_movie(request, movie_id):
   movie = get_object_or_404(Movie,pk=movie_id)
   if request.user in movie.viewed_users.all():
     movie.viewed_users.remove(request.user)
   else:
     movie.viewed_users.add(request.user)
-  return redirect('actors:detail',actor_id)
+  return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required  
-def viewed_in_recommand(request,movie_id):
-  movie = get_object_or_404(Movie,pk=movie_id)
-  if request.user in movie.viewed_users.all():
-    movie.viewed_users.remove(request.user)
-  else:
-    movie.viewed_users.add(request.user)
-  return redirect('actors:recommand')  
-
-
-@login_required  
-def rcmd_movie(request):
+def recommand_movie(request):
   user=request.user
   like_actors=user.like_actors.all()
-  return render(request,'actors/recommand.html',{'like_actors':like_actors})
+  return render(request,'actors/recommandMovie.html',{'like_actors':like_actors})
+
+
+@login_required
+def recommand_actor(request):
+  viewed_movies=request.user.viewed_movies.all()
+  return render(request,'actors/recommandActor.html',{'viewed_movies':viewed_movies})
   
   
 @login_required
