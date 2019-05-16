@@ -57,17 +57,27 @@
   height: 400px;
   background-size: cover;
   background-color: black;
+  background-position: center;
   color:white;
 }
 
-#main_header{
-  background-image: #ffe url( "../image/header2.png" ) repeat;
+#fadein {
+  animation: fadein 2s;
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
 }
-
-#movie_header{
-  background-image: #ffe url( "../image/header1.png" ) repeat;
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
 }
-
-#actor_header{
-  background-image: #ffe url( "../image/header3.jpg" ) repeat;
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
 }
