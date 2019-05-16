@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -143,6 +144,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+) 
 
 # 접미사
 MEDIA_URL = '/media/'
@@ -150,11 +155,8 @@ MEDIA_URL = '/media/'
 # 실제 경로
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-) 
-
 # 새로운 유저모델 경로
 AUTH_USER_MODEL = "accounts.User"
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
