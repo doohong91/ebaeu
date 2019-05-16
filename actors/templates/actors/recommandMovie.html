@@ -1,4 +1,4 @@
-{% extends 'bns.html' %}
+{% extends 'base.html' %}
 {% load mathfilters %}
 {% load humanize %}
 
@@ -6,7 +6,7 @@
 영화 추천
 {% endblock title %}
 
-{% block body2 %}
+{% block body %}
 
 <h2 class="mr-3 my-3">- 영화 추천</h2>
 {% for actor in like_actors %}
@@ -47,11 +47,9 @@
       <div class="row">
 
         {% for movie in actor.movies.all %}
-        {% if movie not in user.viewed_movies.all %}
-
+          {% if movie not in user.viewed_movies.all %}
         
-        <!-- 영화 카드 시작 -->
-        <div class="col-4 px-1" style="width: 18rem;">
+        <div class="col-3 px-1" style="width: 18rem;">
           <div class="card px-0 my-1">
             <img src={{movie.poster_URL}} class="card-img-top" alt="poster" data-target="#movie-modal{{movie.id}}"
               data-toggle="modal">
@@ -64,7 +62,7 @@
                   {{genre.type}}
                   {% endfor %}
                 </small></p>
-              <a href="{% url 'actors:viewed_in_recommand' movie.id %}">
+              <a href="{% url 'actors:viewed_movie' movie.id %}">
                 {% if user in movie.viewed_users.all %}
                 <button class="btn btn-danger" style="font-size: 12px">봤어요</button>
                 <!--아니면 -->
@@ -92,17 +90,13 @@
                 <p><i class="fas fa-star-half-alt"></i> {{movie.score}} / 10</p>
                 <p><i class="fas fa-users"></i> {{movie.audience|intcomma}} 명</p>
                 <p><i class="fas fa-won-sign"></i> {{movie.sales|intcomma}} 원</p>
-                <p>
-                  <hr>
-                </p>
+                <hr>
                 <p><i class="fas fa-theater-masks"></i>
                   {% for actor in movie.actors.all %}
                   <a href="{% url 'actors:detail' actor.id %}">{{actor.name}} </a>
                   {% endfor %}
                 </p>
-                <p>
-                  <hr>
-                </p>
+                <hr>
                 <p>{{movie.summary}}</p>
               </div>
               <div class="modal-footer">
@@ -113,7 +107,7 @@
         </div>
         <!-- 영화 모달 끝 -->
 
-        {% endif %}
+          {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -121,4 +115,4 @@
 </div>
 {% endfor %}
 
-{% endblock body2 %}
+{% endblock %}

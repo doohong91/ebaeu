@@ -1,4 +1,4 @@
-{% extends 'bns.html' %}
+{% extends 'base.html' %}
 {% load mathfilters %}
 {% load humanize %}
 {% load bootstrap4 %}
@@ -7,7 +7,7 @@
 배우상세정보 - {{actor.name}}
 {% endblock title %}
 
-{% block body2 %}
+{% block body %}
 <h2 class="mr-3 my-3">- 상세정보</h2>
 <!-- 배우 정보 -->
 <div class="card mb-2">
@@ -48,7 +48,7 @@
     <div class="col-8">
       <h5 class="my-3">리뷰</h5>
       {% if actor.ratings.all %}
-        <ul class="list-group">
+        <ul class="list-group overflow-auto">
           {% for rating in actor.ratings.all %}
           <li class="list-group-item">
             <form method="post" action="{% url 'actors:delete_rating' actor.id rating.id %}">
@@ -99,7 +99,7 @@
                   {{genre.type}}
                   {% endfor %}
                 </small></p>
-              <a href="{% url 'actors:viewed_in_detail' actor.id movie.id %}">
+              <a href="{% url 'actors:viewed_movie' movie.id %}">
                 {% if user in movie.viewed_users.all %}
                 <button class="btn btn-danger" style="font-size: 12px">봤어요</button>
                 <!--아니면 -->
@@ -153,4 +153,4 @@
     </div>
   </div>
 </div>
-{% endblock body2 %}
+{% endblock%}
