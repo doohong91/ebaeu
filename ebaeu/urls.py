@@ -24,7 +24,7 @@ schema_view = get_swagger_view(title='Movie API')
 urlpatterns = [
     url('api/v1/docs', schema_view),
     path('admin/', admin.site.urls),
-    path('', include('actors.urls')),
+    path('actors/', include('actors.urls')),
     path('accounts/', include('accounts.urls')),
     path('<str:username>/', accounts_views.profile, name='profile'),
 ]
