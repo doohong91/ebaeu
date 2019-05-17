@@ -54,8 +54,10 @@
                 {% csrf_token %}
                 <p class="">
                   <a class="mr-3" href="mailto:">{{ rating.user.username }}</a>
-                  <a class="mx-1" href="{% url 'actors:update_rating' actor.id rating.id %}"><i class="far fa-edit fa-lg"></i></a>
-                  <button class="btn btn-link mx-1 b-0 p-0" type="submit"><i class="fas fa-eraser fa-lg"></i></button>
+                  {% if user == rating.user.username %}
+                    <a class="mx-1" href="{% url 'actors:update_rating' actor.id rating.id %}"><i class="far fa-edit fa-lg"></i></a>
+                    <button class="btn btn-link mx-1 b-0 p-0" type="submit"><i class="fas fa-eraser fa-lg"></i></button>
+                  {% endif %}
                 </p>
                 <div class="d-flex">
                   <span class="badge badge-info badge-pill mr-3">{{ rating.score }}점</span>
