@@ -54,7 +54,7 @@
                 {% csrf_token %}
                 <p class="">
                   <a class="mr-3" href="mailto:">{{ rating.user.username }}</a>
-                  {% if user == rating.user.username %}
+                  {% if user == rating.user %}
                     <a class="mx-1" href="{% url 'actors:update_rating' actor.id rating.id %}"><i class="far fa-edit fa-lg"></i></a>
                     <button class="btn btn-link mx-1 b-0 p-0" type="submit"><i class="fas fa-eraser fa-lg"></i></button>
                   {% endif %}
