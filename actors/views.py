@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Case, When, F
+from django.db.models import Avg, Count, Case, When, F
 from .models import Actor, Movie, Genre, Rating
 from .forms import RatingForm, ActorForm
 # from .serializers import MovieSerializer, ActorSerializer, GenreSerializer, RatingSerializer
@@ -39,7 +39,7 @@ def search(request):
 
 def detail(request, actor_id):
   actor = get_object_or_404(Actor,pk=actor_id)
-  return render(request,'actors/detail.html', {'actor':actor, 'form': RatingForm()})
+  return render(request,'actors/detail.html', {'actor':actor, 'form': RatingForm(), 'update': False})
 
 
 @login_required  
@@ -99,7 +99,7 @@ def update_rating(request, actor_id, rating_id):
   else:
     form = RatingForm(instance=rating)
     actor = get_object_or_404(Actor,pk=actor_id)
-    return render(request,'actors/detail.html',{'actor':actor, 'form': form})
+    return render(request,'actors/detail.html',{'actor':actor, 'form': form, 'update': True, 'rating_id':rating_id})
 
 
 @login_required

@@ -69,12 +69,21 @@
     </div>
     <div class="col-sm-12 col-md-4">
       <h5 class="mb-3">리뷰 작성하기</h5>
+      {% if update %}
+      <form method="post" action="{% url 'actors:update_rating' actor.id rating_id %}">
+          {% csrf_token %}
+          <!--{% bootstrap_form form %}-->
+          {% bootstrap_form form %}
+          <button class="btn btn-primary" type="submit">작성</button>
+      </form>
+      {% else %}
       <form method="post" action="{% url 'actors:create_rating' actor.id %}">
           {% csrf_token %}
           <!--{% bootstrap_form form %}-->
           {% bootstrap_form form %}
           <button class="btn btn-primary" type="submit">작성</button>
       </form>
+      {% endif %}
     </div>
   </div>
   <!--리뷰 끝-->
