@@ -3,7 +3,7 @@ chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
 dj-database-url==0.5.0
-Django==2.1.8
+Django==2.1.9
 django-admin-rangefilter==0.3.16
 django-bootstrap4==0.0.8
 django-computed-property==0.2.4
